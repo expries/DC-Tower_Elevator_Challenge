@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC-Tower_Elevator_Challenge", "DC-Tower_Elevator_Challenge\DC-Tower_Elevator_Challenge.csproj", "{80379B45-3952-4BD1-B8BB-79469AFD9F58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80379B45-3952-4BD1-B8BB-79469AFD9F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80379B45-3952-4BD1-B8BB-79469AFD9F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80379B45-3952-4BD1-B8BB-79469AFD9F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80379B45-3952-4BD1-B8BB-79469AFD9F58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
