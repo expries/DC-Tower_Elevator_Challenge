@@ -1,3 +1,5 @@
+using DC_Tower_Elevator_Challenge.Elevator;
+
 namespace DC_Tower_Elevator_Challenge
 {
     public class ElevatorRequest

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DC_Tower_Elevator_Challenge.Elevator;
 
 namespace DC_Tower_Elevator_Challenge
 {
@@ -13,73 +14,56 @@ namespace DC_Tower_Elevator_Challenge
 
         public static async Task DoStuff()
         {
-            var manager = new ElevatorManager();
-            Task.Run(() => manager.Launch());
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 5
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 43
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 3
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 2
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 6
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 43
-            });
-            
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 43
-            });
+            var dispatcher = new ElevatorDispatcher(5);
+            Task.Run(() => dispatcher.Launch());
 
-            manager.AddRequest(new ElevatorRequest
+            /*
+            var requestA = new ElevatorRequest
             {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 14
-            });
+                Direction = ElevatorDirection.Up,
+                CurrentFloor = 2,
+                DestinationFloor = 4
+            };
             
-            manager.AddRequest(new ElevatorRequest
+            var requestB = new ElevatorRequest
             {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 14
-            });
+                Direction = ElevatorDirection.Down,
+                CurrentFloor = 10,
+                DestinationFloor = 1
+            };
             
-            manager.AddRequest(new ElevatorRequest
+            var requestC = new ElevatorRequest
             {
-                Direction = ElevatorDirection.Down, CurrentFloor = 12, DestinationFloor = 0
-            });
+                Direction = ElevatorDirection.Down,
+                CurrentFloor = 8,
+                DestinationFloor = 5
+            };
             
-            manager.AddRequest(new ElevatorRequest
-            {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 2
-            });
+            dispatcher.AddRequest(requestA);
+            dispatcher.AddRequest(requestB);
+            dispatcher.AddRequest(requestC);
+            */
             
-            manager.AddRequest(new ElevatorRequest
+            for (int i = 0; i < 100; i++)
             {
-                Direction = ElevatorDirection.Up, CurrentFloor = 0, DestinationFloor = 44
-            });
+                int currentFloor = new Random().Next(0, 55);
+                int destinationFloor = new Random().Next(0, 55);
+                var direction = currentFloor > destinationFloor ? ElevatorDirection.Down : ElevatorDirection.Up;
+                
+                var request = new ElevatorRequest
+                {
+                    Direction = direction, 
+                    CurrentFloor = currentFloor, 
+                    DestinationFloor = destinationFloor
+                };
 
-            while (manager.Running)
+                dispatcher.AddRequest(request);
+            }
+
+            while (dispatcher.Running)
             {
-                manager.PrintElevators();
-                Thread.Sleep(250);
+                dispatcher.PrintElevators();
+                Thread.Sleep(200);
                 Console.Clear();
             }
         }
